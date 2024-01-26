@@ -54,16 +54,16 @@ export class ProductManager {
       return parseProductos;
     } catch (e) {
       return "No hay productos"
-   }
-}
+    }
+  }
 
   async getProductById(id) {
     this.#products = await this.getProducts();
     const prod = this.#products.find((e) => e.id === id);
 
-    if (prod) 
+    if (prod)
       return prod;
-    else 
+    else
       return {};
   }
 
@@ -78,7 +78,7 @@ export class ProductManager {
       const { id: newProductId, ...newProductWithoutId } = newProduct;
 
       // Reemplaza el producto en el array productos
-      this.#products[index] = { ...this.#products[index],...newProductWithoutId, id: id };
+      this.#products[index] = { ...this.#products[index], ...newProductWithoutId, id: id };
       await fs.promises.writeFile(
         this.path,
         JSON.stringify(this.#products),
